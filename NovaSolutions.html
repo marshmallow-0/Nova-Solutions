@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA Solutions — Soluções Digitais</title>
+  <style>
+    :root{
+      --black:#000;
+      --white:#fff;
+      --line:#d9d9d9;
+      --soft:#f5f5f5;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      background:var(--white);
+      color:var(--black);
+      line-height:1.5;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+    }
+
+    /* NAVIGATION */
+    header{
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(8px);
+    }
+
+    nav{
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:-.04em;
+      font-size:20px;
+    }
+
+    .logo-mark{
+      width:34px;
+      height:34px;
+      border:3px solid #000;
+      position:relative;
+    }
+
+    .logo-mark:before,
+    .logo-mark:after{
+      content:"";
+      position:absolute;
+      background:#000;
+    }
+
+    .logo-mark:before{
+      width:3px;
+      height:19px;
+      left:7px;
+      top:5px;
+      transform:rotate(45deg);
+    }
+
+    .logo-mark:after{
+      width:19px;
+      height:3px;
+      right:5px;
+      bottom:7px;
+      transform:rotate(45deg);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:32px;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{text-decoration:underline}
+
+    .nav-cta{
+      background:#000;
+      color:#fff;
+      padding:12px 18px;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:calc(100vh - 76px);
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      align-items:center;
+      gap:70px;
+      padding:80px 0;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.18em;
+      margin-bottom:24px;
+    }
+
+    h1{
+      font-size:clamp(52px,7vw,92px);
+      line-height:.92;
+      letter-spacing:-.065em;
+      max-width:850px;
+    }
+
+    .hero-copy{
+      max-width:610px;
+      font-size:18px;
+      color:#444;
+      margin:30px 0;
+    }
+
+    .buttons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 22px;
+      border:1px solid #000;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.03em;
+    }
+
+    .btn.primary{
+      background:#000;
+      color:#fff;
+    }
+
+    .btn.secondary{
+      background:#fff;
+      color:#000;
+    }
+
+    .btn:hover{
+      background:#222;
+      color:#fff;
+    }
+
+    /* ABSTRACT PRODUCT VISUAL */
+    .visual{
+      min-height:480px;
+      background:#000;
+      color:#fff;
+      padding:22px;
+      display:flex;
+      align-items:flex-end;
+    }
+
+    .window{
+      width:100%;
+      border:1px solid #fff;
+      background:#000;
+      min-height:390px;
+      padding:18px;
+    }
+
+    .window-top{
+      display:flex;
+      justify-content:space-between;
+      border-bottom:1px solid #555;
+      padding-bottom:14px;
+      font-size:11px;
+      letter-spacing:.12em;
+      font-weight:700;
+    }
+
+    .mock-content{
+      padding-top:45px;
+    }
+
+    .mock-small{
+      font-size:11px;
+      letter-spacing:.16em;
+      margin-bottom:16px;
+    }
+
+    .mock-title{
+      font-size:48px;
+      line-height:.9;
+      letter-spacing:-.06em;
+      font-weight:900;
+      max-width:330px;
+    }
+
+    .mock-line{
+      height:1px;
+      background:#555;
+      margin:38px 0;
+    }
+
+    .mock-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .mock-box{
+      border:1px solid #555;
+      min-height:85px;
+      padding:12px;
+      font-size:11px;
+    }
+
+    /* SECTIONS */
+    section{
+      padding:110px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .section-label{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.18em;
+      margin-bottom:22px;
+    }
+
+    .section-title{
+      font-size:clamp(42px,5vw,70px);
+      line-height:.95;
+      letter-spacing:-.06em;
+      max-width:850px;
+      margin-bottom:55px;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid #000;
+      border-left:1px solid #000;
+    }
+
+    .service{
+      padding:34px;
+      min-height:280px;
+      border-right:1px solid #000;
+      border-bottom:1px solid #000;
+    }
+
+    .service-number{
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:70px;
+    }
+
+    .service h3{
+      font-size:25px;
+      letter-spacing:-.03em;
+      margin-bottom:15px;
+    }
+
+    .service p{
+      color:#555;
+      font-size:15px;
+    }
+
+    /* PROCESS */
+    .process{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid #000;
+    }
+
+    .step{
+      padding:28px 25px;
+      border-right:1px solid #000;
+      border-bottom:1px solid #000;
+    }
+
+    .step:last-child{border-right:none}
+
+    .step strong{
+      display:block;
+      font-size:12px;
+      letter-spacing:.1em;
+      margin-bottom:35px;
+    }
+
+    .step h3{
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .step p{color:#555}
+
+    /* WHY NOVA */
+    .why{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:start;
+    }
+
+    .why-copy{
+      font-size:22px;
+      letter-spacing:-.02em;
+      max-width:520px;
+    }
+
+    .points{
+      border-top:1px solid #000;
+    }
+
+    .point{
+      display:flex;
+      justify-content:space-between;
+      gap:25px;
+      padding:20px 0;
+      border-bottom:1px solid #000;
+      font-weight:700;
+    }
+
+    .point span:last-child{
+      font-weight:400;
+      color:#555;
+      max-width:300px;
+    }
+
+    /* CTA */
+    .cta{
+      background:#000;
+      color:#fff;
+      text-align:center;
+      padding:120px 20px;
+    }
+
+    .cta .section-label{color:#fff}
+
+    .cta h2{
+      font-size:clamp(50px,8vw,100px);
+      line-height:.9;
+      letter-spacing:-.07em;
+      margin-bottom:30px;
+    }
+
+    .cta p{
+      color:#bbb;
+      max-width:560px;
+      margin:0 auto 35px;
+    }
+
+    .cta .btn{
+      background:#fff;
+      color:#000;
+      border-color:#fff;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#000;
+      color:#fff;
+      border-top:1px solid #333;
+      padding:35px 0;
+    }
+
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:25px;
+      font-size:13px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:20px;
+    }
+
+    .muted{color:#999}
+
+    /* MOBILE */
+    @media(max-width:850px){
+      .nav-links{display:none}
+
+      .hero{
+        grid-template-columns:1fr;
+        gap:45px;
+        padding:60px 0;
+      }
+
+      .visual{min-height:400px}
+
+      .services,
+      .process{
+        grid-template-columns:1fr;
+      }
+
+      .why{
+        grid-template-columns:1fr;
+        gap:45px;
+      }
+
+      .step{border-right:none}
+
+      .footer-row{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="brand">
+        <span class="logo-mark"></span>
+        <span>NOVA SOLUTIONS</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#contactos">Contactos</a>
+      </div>
+
+      <a class="nav-cta" href="#contactos">FALAR CONNOSCO →</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="container hero">
+    <div>
+      <div class="eyebrow">DESENVOLVIMENTO DIGITAL</div>
+
+      <h1>
+        TRANSFORMAMOS<br>
+        IDEIAS EM<br>
+        PRODUTOS DIGITAIS.
+      </h1>
+
+      <p class="hero-copy">
+        Criamos websites e aplicações modernos, funcionais e
+        personalizados para empresas, marcas e empreendedores.
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="#contactos">COMEÇAR UM PROJETO →</a>
+        <a class="btn secondary" href="#servicos">VER SERVIÇOS ↓</a>
+      </div>
+    </div>
+
+    <div class="visual" aria-label="Representação visual de um produto digital">
+      <div class="window">
+        <div class="window-top">
+          <span>NOVA / DIGITAL</span>
+          <span>01 — 03</span>
+        </div>
+
+        <div class="mock-content">
+          <div class="mock-small">WEBSITE / APP / WEB</div>
+          <div class="mock-title">BUILT FOR YOUR NEXT MOVE.</div>
+          <div class="mock-line"></div>
+
+          <div class="mock-grid">
+            <div class="mock-box">01<br><br>DESIGN</div>
+            <div class="mock-box">02<br><br>DEVELOPMENT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="container">
+      <div class="section-label">O QUE FAZEMOS</div>
+
+      <h2 class="section-title">
+        CONSTRUÍMOS O QUE<br>
+        O SEU NEGÓCIO PRECISA.
+      </h2>
+
+      <div class="services">
+
+        <article class="service">
+          <div class="service-number">01</div>
+          <h3>WEBSITES</h3>
+          <p>
+            Websites modernos, responsivos e profissionais
+            para empresas, marcas e projetos.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">02</div>
+          <h3>APLICAÇÕES</h3>
+          <p>
+            Aplicações personalizadas desenvolvidas de acordo
+            com as necessidades do seu projeto.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">03</div>
+          <h3>SOLUÇÕES WEB</h3>
+          <p>
+            Plataformas e sistemas web criados para simplificar
+            processos e melhorar experiências.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="processo">
+    <div class="container">
+      <div class="section-label">COMO TRABALHAMOS</div>
+
+      <h2 class="section-title">
+        DA IDEIA À<br>LANÇAMENTO.
+      </h2>
+
+      <div class="process">
+
+        <article class="step">
+          <strong>01</strong>
+          <h3>DESCOBRIR</h3>
+          <p>
+            Compreendemos a sua ideia, objetivos e necessidades.
+          </p>
+        </article>
+
+        <article class="step">
+          <strong>02</strong>
+          <h3>CONSTRUIR</h3>
+          <p>
+            Planeamos, desenhamos e desenvolvemos a solução.
+          </p>
+        </article>
+
+        <article class="step">
+          <strong>03</strong>
+          <h3>LANÇAR</h3>
+          <p>
+            Testamos, aperfeiçoamos e colocamos o produto em funcionamento.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="container">
+      <div class="why">
+
+        <div>
+          <div class="section-label">PORQUÊ A NOVA?</div>
+
+          <p class="why-copy">
+            Simples para o cliente. Poderoso por dentro.
+            Criamos tecnologia com um propósito:
+            resolver problemas reais.
+          </p>
+        </div>
+
+        <div class="points">
+          <div class="point">
+            <span>DESIGN LIMPO</span>
+            <span>Interfaces modernas e intuitivas.</span>
+          </div>
+
+          <div class="point">
+            <span>À MEDIDA</span>
+            <span>Soluções adaptadas ao seu projeto.</span>
+          </div>
+
+          <div class="point">
+            <span>RESPONSIVO</span>
+            <span>Experiências para todos os dispositivos.</span>
+          </div>
+
+          <div class="point">
+            <span>FOCADO NO RESULTADO</span>
+            <span>Tecnologia pensada para gerar valor.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contactos">
+    <div class="section-label">COMECE O SEU PROJETO</div>
+
+    <h2>TEM UMA IDEIA?</h2>
+
+    <p>
+      Conte-nos o que tem em mente. Vamos descobrir
+      juntos como transformar a sua ideia numa solução digital.
+    </p>
+
+    <div class="buttons" style="justify-content:center">
+      <a class="btn" href="https://wa.me/258000000000">
+        FALAR NO WHATSAPP →
+      </a>
+
+      <a class="btn" href="mailto:info@novasolutions.com">
+        ENVIAR EMAIL →
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div>
+        <strong>NOVA SOLUTIONS</strong><br>
+        <span class="muted">Transformamos ideias em produtos digitais.</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contactos">Contactos</a>
+      </div>
+
+      <div class="muted">© 2026 NOVA Solutions</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
